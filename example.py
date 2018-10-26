@@ -14,7 +14,7 @@ from azure.common.credentials import ServicePrincipalCredentials
 from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.network import NetworkManagementClient
 from azure.mgmt.compute import ComputeManagementClient
-from azure.mgmt.compute.models import DiskCreateOption
+from azure.mgmt.compute.models import DiskCreateOptionTypes
 
 from msrestazure.azure_exceptions import CloudError
 
@@ -126,7 +126,7 @@ def run_example():
                 'location': LOCATION,
                 'disk_size_gb': 1,
                 'creation_data': {
-                    'create_option': DiskCreateOption.empty
+                    'create_option': DiskCreateOptionTypes.empty
                 }
             }
         )
@@ -144,7 +144,7 @@ def run_example():
         virtual_machine.storage_profile.data_disks.append({
             'lun': 12,
             'name': 'mydatadisk1',
-            'create_option': DiskCreateOption.attach,
+            'create_option': DiskCreateOptionTypes.attach,
             'managed_disk': {
                 'id': data_disk.id
             }
